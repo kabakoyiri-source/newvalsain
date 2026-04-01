@@ -52,12 +52,76 @@ header {
   background: var(--color-bg);
 }
 
-.logo {
+.valsain-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.valsain-logo:hover .valsain-logo__emblem {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.valsain-logo:hover .valsain-logo__line, 
+.valsain-logo:hover .valsain-logo__line-inner {
+  stroke: #8b7355;
+}
+
+.valsain-logo__emblem {
+  width: 44px;
+  height: 44px;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.valsain-logo__svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--color-bg);
+  stroke-width: 5;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 10;
+}
+
+.valsain-logo__line, .valsain-logo__line-inner, .valsain-logo__line-top {
+  transition: stroke 0.4s ease;
+}
+
+.valsain-logo__line-inner {
+  stroke-width: 3;
+  opacity: 0.7;
+}
+
+.valsain-logo__text {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.valsain-logo__title {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 4px;
   color: var(--color-text);
+  line-height: 1;
+}
+
+.valsain-logo__sa {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--color-secondary);
 }
 
 nav ul {
@@ -128,6 +192,26 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+}
+
+.centered-section {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centered-section .section-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.centered-section .text-content p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-title {
