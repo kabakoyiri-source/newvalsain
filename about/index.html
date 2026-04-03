@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Valsain SA</title>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline points="20,25 50,85 80,25" fill="none" stroke="%23222" stroke-width="4"/><polyline points="35,25 50,60 65,25" fill="none" stroke="%23222" stroke-width="2"/><line x1="10" y1="25" x2="90" y2="25" stroke="%23222" stroke-width="4"/></svg>'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
     <div class="container">
         <header class="fade-in">
-            <a href="index.html" class="valsain-logo">
+            <a href="../" class="valsain-logo">
                 <div class="valsain-logo__emblem">
                     <svg viewBox="0 0 100 100" class="valsain-logo__svg">
                         <polyline points="20,25 50,85 80,25" class="valsain-logo__line" />
@@ -23,13 +24,13 @@
                 </div>
                 <div class="valsain-logo__text">
                     <span class="valsain-logo__title">VALSAIN</span>
-                    <span class="valsain-logo__sa">SA</span>
+                    
                 </div>
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="./" class="active">About</a></li>
                 </ul>
             </nav>
         </header>
@@ -37,7 +38,7 @@
         <main>
             <div class="about-hero fade-in">
                 <!-- Image height strictly set to match the panoramic look of the home page so it perfectly fits the screen -->
-                <img src="assets/office_interior.png" alt="Valsain SA Office" class="about-hero-image fade-in" style="height: 45vh;">
+                <img src="../assets/office_interior.png" alt="Valsain SA Office" class="about-hero-image fade-in" style="height: 45vh;">
                 
                 <h1 class="section-title" style="margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center;">Dedicated professionals.</h1>
                 <div class="text-content">
@@ -59,16 +60,18 @@
                 </div>
             </section>
 
-            <section class="centered-section fade-in" style="padding-top: 0; padding-bottom: 8rem;">
-                <h2 class="section-title">Get in Touch with Us.</h2>
-                <div class="text-content contact-info" style="display: flex; gap: 4rem; justify-content: center; text-align: left; flex-wrap: wrap;">
-                    <div style="margin-bottom: 3rem; text-align: center;">
-                        <h4 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--color-text);">Address</h4>
-                        <p style="font-family: var(--font-serif); font-size: 1.3rem;">Viale Stazione 6,<br>6512 Giubiasco,<br>Switzerland</p>
+            <section class="centered-section fade-in" style="padding-top: 0; padding-bottom: 8rem; margin-top: 6rem;">
+                <h2 class="section-title" style="text-align: center;">Get in Touch with Us.</h2>
+                <p style="text-align: center; color: var(--color-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 3rem;">Please contact us for more information on our investment strategies and services.</p>
+                
+                <div class="contact-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fdfdfd; border: 1px solid #eaeaea; padding: 4rem; border-radius: 12px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.04);">
+                    <div style="margin-bottom: 2.5rem; text-align: center;">
+                        <h4 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.05em;">Address</h4>
+                        <p style="font-family: var(--font-sans); color: var(--color-secondary); font-size: 1.15rem; line-height: 1.6;">Viale Stazione 6,<br>6512 Giubiasco,<br>Switzerland</p>
                     </div>
                     <div style="text-align: center;">
-                        <h4 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--color-text);">Contact Us:</h4>
-                        <p style="font-family: var(--font-serif); font-size: 1.3rem;">info@valsain.ch</p>
+                        <h4 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.05em;">Email Us</h4>
+                        <a href="mailto:info@valsaintconsulting.com" style="display: inline-block; font-family: var(--font-sans); color: #2B3A42; font-size: 1.15rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(43,58,66,0.3); padding-bottom: 3px; transition: border-color 0.3s; opacity: 1;">info@valsaintconsulting.com</a>
                     </div>
                 </div>
             </section>
@@ -83,6 +86,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
