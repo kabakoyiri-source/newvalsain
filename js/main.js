@@ -1,5 +1,26 @@
 (() => {
   'use strict';
+  const hostname = window.location.hostname.toLowerCase().replace(/\.$/, '').replace(/^www\./, '');
+  const domainEmails = new Map([
+    ['valsain.co', 'info@valsain.co'],
+    ['valsaintconsulting.com', 'info@valsaintconsulting.com']
+  ]);
+  const contactEmail = domainEmails.get(hostname) || 'info@valsain.co';
+  document.querySelectorAll('[data-contact-email]').forEach(element => {
+    element.textContent = contactEmail;
+  });
+  document.querySelectorAll('[data-contact-email-link]').forEach(link => {
+    link.href = `mailto:${contactEmail}`;
+  });
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+    try {
+      const organization = JSON.parse(script.textContent);
+      if (organization['@type'] === 'Organization') {
+        organization.email = contactEmail;
+        script.textContent = JSON.stringify(organization);
+      }
+    } catch (_) { /* Unrelated or invalid metadata must not interrupt the page. */ }
+  });
   const root = document.documentElement;
   const languageButtons = document.querySelectorAll('[data-set-lang]');
   const languagePreferenceKey = 'valsain-language-preference';
