@@ -2,6 +2,7 @@
   'use strict';
   const root = document.documentElement;
   const languageButtons = document.querySelectorAll('[data-set-lang]');
+  const languagePreferenceKey = 'valsain-language-preference';
   const titles = {fr:'Valsain SA · Carrières, Immobilier & Conseil',en:'Valsain SA · Quarrying, Real Estate & Advisory'};
   const descriptions = {
     fr:'Valsain SA, société suisse fondée en 1972 à Giubiasco. Extraction de pierre, immobilier et construction, conseil en affaires et en investissement.',
@@ -18,13 +19,16 @@
     document.querySelector('nav').setAttribute('aria-label',lang === 'fr' ? 'Navigation principale' : 'Main navigation');
     languageButtons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.setLang === lang)));
     document.querySelectorAll('[data-alt-fr]').forEach(image => {image.alt = image.dataset[lang === 'en' ? 'altEn' : 'altFr'];});
-    try {localStorage.setItem('valsain-lang',lang);} catch (_) { /* Storage is optional. */ }
   }
   let savedLanguage;
-  try {savedLanguage = localStorage.getItem('valsain-lang');} catch (_) {}
-  const initialLanguage = ['fr','en'].includes(savedLanguage) ? savedLanguage : ((navigator.language || 'fr').toLowerCase().startsWith('en') ? 'en' : 'fr');
+  try {savedLanguage = localStorage.getItem(languagePreferenceKey);} catch (_) {}
+  const initialLanguage = ['fr','en'].includes(savedLanguage) ? savedLanguage : 'en';
   setLanguage(initialLanguage);
-  languageButtons.forEach(button => button.addEventListener('click',() => setLanguage(button.dataset.setLang)));
+  languageButtons.forEach(button => button.addEventListener('click',() => {
+    const lang = button.dataset.setLang;
+    setLanguage(lang);
+    try {localStorage.setItem(languagePreferenceKey,lang);} catch (_) { /* Storage is optional. */ }
+  }));
   document.querySelectorAll('.year').forEach(element => {element.textContent = new Date().getFullYear();});
   const contact = document.getElementById('contact');
   const navLinks = document.querySelectorAll('[data-nav]');
