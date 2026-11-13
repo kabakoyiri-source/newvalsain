@@ -1,21 +1,42 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once visible if you only want the animation once
-                // observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(el => observer.observe(el));
-});
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const languageButtons = document.querySelectorAll('[data-set-lang]');
+  const titles = {fr:'Valsain SA · Carrières, Immobilier & Conseil',en:'Valsain SA · Quarrying, Real Estate & Advisory'};
+  const descriptions = {
+    fr:'Valsain SA, société suisse fondée en 1972 à Giubiasco. Extraction de pierre, immobilier et construction, conseil en affaires et en investissement.',
+    en:'Valsain SA, a Swiss company founded in 1972 in Giubiasco. Stone extraction, real estate and construction, business and investment advisory.'
+  };
+  function setLanguage(value) {
+    const lang = value === 'en' ? 'en' : 'fr';
+    root.lang = lang;
+    root.dataset.lang = lang;
+    document.title = titles[lang];
+    document.querySelector('meta[name="description"]').content = descriptions[lang];
+    document.querySelector('meta[property="og:title"]').content = titles[lang];
+    document.querySelector('meta[property="og:description"]').content = descriptions[lang];
+    document.querySelector('nav').setAttribute('aria-label',lang === 'fr' ? 'Navigation principale' : 'Main navigation');
+    languageButtons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.setLang === lang)));
+    document.querySelectorAll('[data-alt-fr]').forEach(image => {image.alt = image.dataset[lang === 'en' ? 'altEn' : 'altFr'];});
+    try {localStorage.setItem('valsain-lang',lang);} catch (_) { /* Storage is optional. */ }
+  }
+  let savedLanguage;
+  try {savedLanguage = localStorage.getItem('valsain-lang');} catch (_) {}
+  const initialLanguage = ['fr','en'].includes(savedLanguage) ? savedLanguage : ((navigator.language || 'fr').toLowerCase().startsWith('en') ? 'en' : 'fr');
+  setLanguage(initialLanguage);
+  languageButtons.forEach(button => button.addEventListener('click',() => setLanguage(button.dataset.setLang)));
+  document.querySelectorAll('.year').forEach(element => {element.textContent = new Date().getFullYear();});
+  const contact = document.getElementById('contact');
+  const navLinks = document.querySelectorAll('[data-nav]');
+  if ('IntersectionObserver' in window && contact) {
+    new IntersectionObserver(entries => {
+      const current = entries[0].isIntersecting ? 'contact' : 'home';
+      navLinks.forEach(link => {
+        const active = link.dataset.nav === current;
+        link.classList.toggle('active',active);
+        if (active) link.setAttribute('aria-current','location');
+        else link.removeAttribute('aria-current');
+      });
+    },{threshold:0.15}).observe(contact);
+  }
+})();
